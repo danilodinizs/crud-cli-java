@@ -4,10 +4,7 @@ import danilo.cruddevdojo.connection.ConnectionFactory;
 import danilo.cruddevdojo.domain.Company;
 import lombok.extern.log4j.Log4j2;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +31,28 @@ public class CompanyRepository {
         }
         return companyList;
     }
+
     private static PreparedStatement createPreparedStatementFindByName(Connection connection, String name) throws SQLException {
-        String sql = "SELECT * FROM games_store.developer_company WHERE name LIKE ?;";
+        String sql = "SELECT * FROM games_store.company WHERE name LIKE ?;";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, String.format("%%%s%%", name) );
+        ps.setString(1, String.format("%%%s%%", name));
+        return ps;
+    }
+
+    public static void delete(int id) {
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement ps = createPreparedStatementDelete(connection, id)) {
+            ps.executeUpdate();
+            log.info("Deleted Company '{}' from database", id);
+        } catch (SQLException e) {
+            log.error("Error while trying to delete Company '{}' from database", id, e);
+        }
+    }
+
+    private static PreparedStatement createPreparedStatementDelete(Connection connection, Integer id) throws SQLException {
+        String sql = "DELETE FROM `games_store`.`company` WHERE (`id` = ?);";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, id);
         return ps;
     }
 }
