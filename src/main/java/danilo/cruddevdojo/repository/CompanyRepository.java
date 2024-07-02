@@ -2,14 +2,17 @@ package danilo.cruddevdojo.repository;
 
 import danilo.cruddevdojo.connection.ConnectionFactory;
 import danilo.cruddevdojo.domain.Company;
-import lombok.extern.log4j.Log4j2;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Log4j2
+
 public class CompanyRepository {
+
+    static final Logger log = LoggerFactory.getLogger(CompanyRepository.class);
     public static List<Company> findByName(String name) {
         log.info("Finding Company by name '{}'", name);
         List<Company> companyList = new ArrayList<>();
@@ -55,4 +58,22 @@ public class CompanyRepository {
         ps.setInt(1, id);
         return ps;
     }
+
+    public static void insert(Company company) {
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement ps = createPreparedStatementInsert(connection, company)) {
+            ps.executeUpdate();
+            log.error("Inserted Company '{}' in the database", company.getName());
+        } catch (SQLException e) {
+            log.error("Error while trying to insert Company '{}'", company.getName(), e);
+        }
+    }
+
+    private static PreparedStatement createPreparedStatementInsert(Connection connection, Company company) throws SQLException {
+        String sql = "INSERT INTO `games_store`.`company` (`name`) VALUES (?);";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, company.getName());
+        return ps;
+    }
+
 }
