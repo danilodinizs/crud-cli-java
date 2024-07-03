@@ -1,4 +1,4 @@
-package danilo.cruddevdojo.connection;
+package danilo.crudgamestore.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

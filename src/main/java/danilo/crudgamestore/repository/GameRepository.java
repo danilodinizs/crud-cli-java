@@ -1,8 +1,8 @@
-package danilo.cruddevdojo.repository;
+package danilo.crudgamestore.repository;
 
-import danilo.cruddevdojo.connection.ConnectionFactory;
-import danilo.cruddevdojo.domain.Company;
-import danilo.cruddevdojo.domain.Game;
+import danilo.crudgamestore.connection.ConnectionFactory;
+import danilo.crudgamestore.domain.Company;
+import danilo.crudgamestore.domain.Game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

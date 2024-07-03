@@ -1,8 +1,8 @@
-package danilo.cruddevdojo.test;
+package danilo.crudgamestore.test;
 
-import danilo.cruddevdojo.repository.CompanyRepository;
-import danilo.cruddevdojo.services.CompanyServices;
-import danilo.cruddevdojo.services.GameServices;
+import danilo.crudgamestore.repository.CompanyRepository;
+import danilo.crudgamestore.services.CompanyServices;
+import danilo.crudgamestore.services.GameServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

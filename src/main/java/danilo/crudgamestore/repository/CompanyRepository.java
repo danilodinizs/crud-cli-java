@@ -1,7 +1,7 @@
-package danilo.cruddevdojo.repository;
+package danilo.crudgamestore.repository;
 
-import danilo.cruddevdojo.connection.ConnectionFactory;
-import danilo.cruddevdojo.domain.Company;
+import danilo.crudgamestore.connection.ConnectionFactory;
+import danilo.crudgamestore.domain.Company;
 
 import java.sql.*;
 import java.util.ArrayList;

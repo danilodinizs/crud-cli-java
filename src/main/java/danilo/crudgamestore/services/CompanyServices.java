@@ -1,9 +1,8 @@
-package danilo.cruddevdojo.services;
+package danilo.crudgamestore.services;
 
-import danilo.cruddevdojo.domain.Company;
-import danilo.cruddevdojo.repository.CompanyRepository;
+import danilo.crudgamestore.domain.Company;
+import danilo.crudgamestore.repository.CompanyRepository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
