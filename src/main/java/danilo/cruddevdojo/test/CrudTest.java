@@ -2,8 +2,6 @@ package danilo.cruddevdojo.test;
 
 import java.util.Scanner;
 
-import static danilo.cruddevdojo.repository.CompanyRepository.logtest;
-
 public class CrudTest {
     private static final Scanner SCANNER = new Scanner(System.in);
     public static void main(String[] args) {
@@ -14,7 +12,6 @@ public class CrudTest {
 //            if(op == 0) break;
 //            CompanyServices.menu(op);
 //        }
-        logtest();
     }
 
     private static void companyMenu() {
