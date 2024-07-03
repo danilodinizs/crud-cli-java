@@ -1,4 +1,4 @@
-package danilo.cruddevdojo.domain;
+package danilo.crudgamestore.domain;
 
 import lombok.Builder;
 import lombok.Value;

@@ -1,9 +1,9 @@
-package danilo.cruddevdojo.services;
+package danilo.crudgamestore.services;
 
-import danilo.cruddevdojo.domain.Company;
-import danilo.cruddevdojo.repository.CompanyRepository;
+import danilo.crudgamestore.domain.Company;
+import danilo.crudgamestore.repository.CompanyRepository;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class CompanyServices {
@@ -13,7 +13,7 @@ public class CompanyServices {
             case 1 -> findByName();
             case 2 -> delete();
             case 3 -> insert();
-            default -> throw new IllegalArgumentException("Not a valid option");
+            case 4 -> update();
         }
     }
     private static void findByName() {
@@ -42,5 +42,24 @@ public class CompanyServices {
         Company company = Company.builder().name(SCANNER.nextLine()).build();
         CompanyRepository.insert(company);
 
+    }
+
+    private static void update() {
+        System.out.println("Type the id of the company you want to update");
+        Optional<Company> companyOptional = CompanyRepository.findById(Integer.parseInt(SCANNER.nextLine()));
+        if (companyOptional.isEmpty()) {
+            System.out.println("Company not found");
+            return;
+        }
+        Company company = companyOptional.get();
+        System.out.println("Company found: " + company);
+        System.out.println("Type the new name to this company or enter to keep the same");
+        String name = SCANNER.nextLine();
+        Company c = Company
+                .builder()
+                .id(company.getId())
+                .name(name = name.isEmpty() ? company.getName() : name)
+                .build();
+        CompanyRepository.update(c);
     }
 }
