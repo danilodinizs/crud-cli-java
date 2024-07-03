@@ -2,6 +2,7 @@ package danilo.cruddevdojo.test;
 
 import danilo.cruddevdojo.repository.CompanyRepository;
 import danilo.cruddevdojo.services.CompanyServices;
+import danilo.cruddevdojo.services.GameServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,10 +15,22 @@ public class CrudTest {
     public static void main(String[] args) {
         int op;
         while (true) {
-            companyMenu();
+            menu();
             op = Integer.parseInt(SCANNER.nextLine());
             if(op == 0) break;
-            CompanyServices.menu(op);
+            switch (op) {
+                case 1 -> {
+                    companyMenu();
+                    op = Integer.parseInt(SCANNER.nextLine());
+                    CompanyServices.menu(op);
+                }
+                case 2 -> {
+                    gameMenu();
+                    op = Integer.parseInt(SCANNER.nextLine());
+                    GameServices.menu(op);
+                }
+            }
+
         }
     }
 
@@ -27,6 +40,21 @@ public class CrudTest {
         System.out.println("2. Delete a company");
         System.out.println("3. Insert a company");
         System.out.println("4. Update a company");
+        System.out.println("9. Back");
+    }
+
+    private static void menu() {
+        System.out.println("1. Company");
+        System.out.println("2. Game");
         System.out.println("0. Exit");
+    }
+
+    private static void gameMenu() {
+        System.out.println("Type the number of your operation");
+        System.out.println("1. Search for game");
+        System.out.println("2. Delete a game");
+        System.out.println("3. Insert a game");
+        System.out.println("4. Update a game");
+        System.out.println("9. Back");
     }
 }

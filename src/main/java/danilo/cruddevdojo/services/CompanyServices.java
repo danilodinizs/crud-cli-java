@@ -15,7 +15,6 @@ public class CompanyServices {
             case 2 -> delete();
             case 3 -> insert();
             case 4 -> update();
-            default -> throw new IllegalArgumentException("Not a valid option");
         }
     }
     private static void findByName() {

@@ -5,6 +5,7 @@ import danilo.cruddevdojo.domain.Game;
 import danilo.cruddevdojo.repository.CompanyRepository;
 import danilo.cruddevdojo.repository.GameRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -16,19 +17,17 @@ public class GameServices {
             case 2 -> delete();
             case 3 -> insert();
             case 4 -> update();
-            default -> throw new IllegalArgumentException("Not a valid option");
         }
     }
     private static void findByName() {
         System.out.println("Type the name or empty to all");
         String name = SCANNER.nextLine();
-        CompanyRepository.findByName(name)
-                .forEach(c -> System.out.printf("ID: %d | NAME: %s\n", c.getId(), c.getName()));
-//        List<Game> companies = CompanyRepository.findByName(name);
-//        for (int i = 0; i < companies.size(); i++) {
-//            Game c = companies.get(i);
-//            System.out.printf("[%d] - ID: %d | NAME: %s\n", i, c.getId(), c.getName());
-//        }
+//        GameServices.findByName(name)
+//                .forEach(g -> System.out.printf("ID: %d | NAME: %s\n", g.getId(), g.getName()));
+        List<Game> games = GameRepository.findByName(name);
+        for (Game g : games) {
+            System.out.printf("ID: %d | NAME: %s | PRICE: R$%.2f | COMPANY: %s \n", g.getId(), g.getName(), g.getPrice(), g.getCompany().getName());
+        }
     }
     private static void delete() {
         System.out.println("Type the id of the game you want to delete");
